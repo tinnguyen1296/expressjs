@@ -1,0 +1,29 @@
+<a class="btn btn-primary p-auto m-2" href="/users/create">Create</a>
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Phone number</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.map( (user, i) => { %>
+      <tr>
+        <th scope="row"><%= i+1 %></th>
+        <td>
+          <a href="/users/edit/<%= user.id %>">
+            <%= user.name %>
+          </a>
+        </td>
+        <td><%= user.number %></td>
+        <td>
+          <a href="/users/<%= user.id %>">
+            Delete
+          </a>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
