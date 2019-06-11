@@ -1,13 +1,9 @@
-const low = require('lowdb');
-const FileSync = require('lowdb/adapters/FileSync');
-
-const adapter = new FileSync('db.json');
-const db = low(adapter);
-
-const users = db.get('users');
+const db = require('../db.js');
 const shortid = require('shortid');
 
 const controller = {};
+
+const users = db.get('users');
 
 controller.index = (req, res) => {
   res.render('users/index', { users: users.value(), title: 'Users' });

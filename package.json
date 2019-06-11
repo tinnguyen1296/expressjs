@@ -4,17 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon script.js",
+    "start": "nodemon --inspect index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cookie-parser": "^1.4.4",
+    "dotenv": "^8.0.0",
     "ejs": "^2.6.1",
     "ejs-locals": "^1.0.2",
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
     "lowdb": "^1.0.0",
+    "md5": "^2.2.1",
     "shortid": "^2.2.14"
   },
   "devDependencies": {
