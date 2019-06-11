@@ -13,7 +13,9 @@ controller.index = (req, res) => {
   const totalperPage = 3;
   const before = parseInt(numberPage) - 1;
   const after = parseInt(numberPage) + 1;
+
   let showPag = [1, 2, 3];
+
   if(numberPage >= totalperPage && numberPage < totalPag) {
     showPag = [before, parseInt(numberPage), after];
   } else if(numberPage === totalPag) {
@@ -28,6 +30,7 @@ controller.index = (req, res) => {
     products: products.value().slice(begin, end),
     showPag: showPag,
     active: numberPage,
+    totalPag: totalPag,
   });
 }
 

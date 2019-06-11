@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/css/products.css" />
+
 <h1>Products</h1>
 <div class="container">
   <div class="row">
@@ -16,21 +18,22 @@
       </div>
     <% } %>
   </div>
-  <div class="pagnigation d-flex justify-content-center">
-    <div class="prev">
-      Prev
-    </div>
-    <ul class="d-flex list-unstyled justify-content-center">
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item <%= (active === 1) ? 'disabled' : '' %>">
+        <a class="page-link" href="?page=<%= (active !== 1) ? active - 1 : '' %>" tabindex="-1">Previous</a>
+      </li>
       <% for(let i = 0; i < showPag.length; i++) { %>
-        <li class="<%= (active === showPag[i]) ? 'active' : '' %>">
-          <a href="?page=<%= showPag[i] %>">
+        <li class="page-item <%= (active === showPag[i]) ? 'active' : '' %>">
+          <a class="page-link" href="?page=<%= showPag[i] %>">
             <%= showPag[i] %>
           </a>
         </li>
       <% } %>
+      <li class="page-item <%= (active === totalPag) ? 'disabled' : '' %>">
+        <a class="page-link" href="?page=<%= (active !== totalPag) ? active + 1 : '' %> ">Next</a>
+      </li>
     </ul>
-    <div class="next">
-      Next
-    </div>
-  </div>
+  </nav>
 </div>
