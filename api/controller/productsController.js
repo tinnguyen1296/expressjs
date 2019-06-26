@@ -5,24 +5,12 @@ const products = db.get('products');
 const controller = {};
 
 controller.index = (req, res) => {
-  const len = products.value().length;
-  const numberPage = parseInt(req.query.page) || 1;
+  const activePage = parseInt(req.query.page) || 1;
   const perPage = 9;
-  const totalPag = Math.ceil(len / perPage);
-  const totalperPage = 3;
-  const before = parseInt(numberPage) - 1;
-  const after = parseInt(numberPage) + 1;
+  const totalProductCount = products.value().length;
 
-  let showPag = [1, 2, 3];
-
-  if (numberPage >= totalperPage && numberPage < totalPag) {
-    showPag = [before, parseInt(numberPage), after];
-  } else if (numberPage === totalPag) {
-    showPag = [before - 1, before, parseInt(numberPage)];
-  }
-
-  let begin = (numberPage - 1) * perPage;
-  let end = numberPage * perPage;
+  let begin = (activePage - 1) * perPage;
+  let end = activePage * perPage;
 
   if(products.length === 0) {
     return res.status(204).send({
@@ -31,12 +19,9 @@ controller.index = (req, res) => {
     })
   }
   const data = {
-    title: "Products",
-    // products: products
-    data: products.value().slice(begin, end),
-    showPag: showPag,
-    active: numberPage,
-    totalPag: totalPag,
+    products: products.value().slice(begin, end),
+    activePage: activePage,
+    totalProductCount: totalProductCount,
   }
   return res.status(200).send({
     success: true,
