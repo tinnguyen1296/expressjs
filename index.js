@@ -14,7 +14,7 @@ const cookieParser = require('cookie-parser');
 const routeUsers = require('./routers/userRouter');
 const routeProducts = require('./routers/productRouter');
 const routeAuth = require('./routers/authRouter');
-const routeProductsApi = require('./api/router/productsRouter');
+const routeApi = require('./api/router/Router');
 //Middlewares
 const middlewareLogin = require('./middlewares/loginMiddleware');
 
@@ -34,13 +34,14 @@ app.use(expressLayouts);
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  // res.header('Content-Type', 'application/json');
   next();
 });
 app.use(cookieParser(process.env.SESSION_SECRET));
 app.use('/users', middlewareLogin.middlewareLogin, routeUsers);
 app.use('/products', middlewareLogin.middlewareLogin, routeProducts);
 app.use('/admin', routeAuth);
-app.use('/api', routeProductsApi);
+app.use('/api', routeApi);
 
 app.get('/', function(req, res, next) {
   res.render('index', { title:'Home' });

@@ -5,6 +5,10 @@ const products = db.get('products');
 const controller = {};
 
 controller.index = (req, res) => {
+  return res.status(200).send({
+    success: true,
+    message: 'Products not found'
+  })
   const activePage = parseInt(req.query.page) || 1;
   const perPage = 9;
   const totalProductCount = products.value().length;
@@ -25,7 +29,7 @@ controller.index = (req, res) => {
   }
   return res.status(200).send({
     success: true,
-    message: 'todo added successfully',
+    message: 'Successfully',
     data
   })
 }
